@@ -23,7 +23,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 SOURCE_ROOT = "https://tt.huatu.com/zw"
 DETAIL_ROOT = "https://ah.huatu.com/zw"
-OFFICIAL_URL = "https://bm.scs.gov.cn/kl2027"
+OFFICIAL_URL = "http://bm.scs.gov.cn/pp/gkweb/core/web/ui/business/auth/login.html"
 YEAR = "2027"
 CHINA_TZ = timezone(timedelta(hours=8))
 REGISTRATION_OPEN = "2026-10-15T08:00:00+08:00"
