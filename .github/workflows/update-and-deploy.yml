@@ -30,19 +30,24 @@ jobs:
       - name: Refresh public job data
         run: python3 outputs/scraper.py --output outputs/data/jobs.json
 
+      - name: Refresh public-sector positions
+        run: python3 outputs/public-sector/scraper.py outputs/public-sector/data.js
+
       - name: Commit refreshed data
         run: |
           git config user.name "thai-job-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add outputs/data/jobs.json
+          git add outputs/data/jobs.json outputs/public-sector/data.js
           git diff --cached --quiet || git commit -m "chore: refresh Thai jobs"
           git push || true
 
       - name: Build static site
         run: |
           mkdir -p _site/data
+          mkdir -p _site/public-sector
           cp outputs/index.html outputs/styles.css outputs/app.js outputs/seed.js outputs/manifest.webmanifest _site/
           cp outputs/data/jobs.json _site/data/jobs.json
+          cp outputs/public-sector/index.html outputs/public-sector/styles.css outputs/public-sector/app.js outputs/public-sector/data.js outputs/public-sector/manifest.webmanifest _site/public-sector/
           touch _site/.nojekyll
 
       - name: Configure Pages
