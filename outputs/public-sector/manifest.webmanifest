@@ -1,0 +1,10 @@
+{
+  "name": "编制岗雷达",
+  "short_name": "编制岗雷达",
+  "description": "泰语、亚非语言文学专业可报考的公务员、事业单位与参公岗位。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f3e9",
+  "theme_color": "#17352f",
+  "lang": "zh-CN"
+}
