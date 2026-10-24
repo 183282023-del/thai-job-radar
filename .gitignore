@@ -1,0 +1,8 @@
+.DS_Store
+outputs/data/state.json
+outputs/online/
+outputs/preview*.png
+outputs/*.zip
+__pycache__/
+*.pyc
+
