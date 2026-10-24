@@ -161,7 +161,7 @@
             </span>
             <div>
               <strong id="recentMetric">0</strong>
-              <span>近期仍可投递</span>
+              <span>近 30 天有更新</span>
             </div>
             <small>30 天内更新的结果</small>
           </article>
@@ -214,10 +214,10 @@
               <button class="filter-chip" type="button" data-city="其他">其他城市</button>
             </div>
             <div class="filter-tail">
-              <label class="switch-label" title="仅显示近 30 天内更新，或页面未给日期但当前可见的岗位">
+              <label class="switch-label" title="仅显示最近 30 天有更新，或页面未给日期但当前可见的岗位">
                 <input type="checkbox" id="openOnly" checked />
                 <span class="switch-track"><span class="switch-thumb"></span></span>
-                <span>只看可投递</span>
+                <span>只看近期结果</span>
               </label>
               <span class="toolbar-divider"></span>
               <div class="view-switch" role="group" aria-label="切换布局">
@@ -255,7 +255,7 @@
               <div class="empty-state" id="emptyState" hidden>
                 <span class="empty-orbit" aria-hidden="true">★</span>
                 <h3>没有找到符合当前筛选的岗位</h3>
-                <p>试试关闭“只看可投递”，或清除搜索关键词。西安近期暂时没有达到 8K 的泰语岗位。</p>
+                <p>试试关闭“只看近期结果”，或清除搜索关键词。西安近期暂时没有达到 8K 的泰语岗位。</p>
                 <button class="secondary-button compact" id="resetFiltersButton" type="button">重置筛选</button>
               </div>
             </div>
@@ -277,7 +277,7 @@
                   </li>
                   <li>
                     <span>记录投递进度</span>
-                    <small>职位收藏后，导出 CSV 作为每日跟进清单。</small>
+                    <small>在目标平台确认职位后，导出 CSV 作为每日跟进清单。</small>
                   </li>
                 </ol>
               </section>
@@ -382,6 +382,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="seed.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20261024a"></script>
   </body>
 </html>
