@@ -222,7 +222,7 @@
           <div class="job-heading">
             <div class="job-title-line">
               <h3 title="${escapeHtml(job.title)}">${escapeHtml(job.title)}</h3>
-              <span class="fresh-dot ${job.freshness === "recent" ? "" : "verify"}">${job.freshness === "recent" ? "近期开放" : "待确认"}</span>
+              <span class="fresh-dot ${job.freshness === "recent" ? "" : "verify"}">${job.freshness === "recent" ? "近期索引" : "待确认"}</span>
             </div>
             <p class="company-name" title="${escapeHtml(job.company)}">${escapeHtml(job.company)}</p>
           </div>
@@ -241,7 +241,7 @@
           </div>
           <div class="info-cell">
             <span class="info-label">招聘状态</span>
-            <span class="info-value" title="${escapeHtml(job.freshness_label)}">${calendarIcon()}${escapeHtml(job.freshness_label)}</span>
+            <span class="info-value" title="近 30 天更新，投递前请在目标平台确认">${calendarIcon()}${escapeHtml(job.freshness === "recent" ? "近 30 天更新 · 投递前确认" : job.freshness_label)}</span>
           </div>
           <div class="info-cell">
             <span class="info-label">公司信息</span>
@@ -253,8 +253,8 @@
           <div class="apply-method">
             <span class="apply-icon">${sendIcon()}</span>
             <div>
-              <strong>投递方式：在线申请 / 沟通</strong>
-              <span title="${escapeHtml(job.apply_method)}">${escapeHtml(job.apply_method)}</span>
+              <strong>投递方式：平台内在线申请 / 沟通</strong>
+              <span title="请搜索公司名称和岗位名称，确认仍在招聘">搜索同公司、同岗位后在线投递</span>
             </div>
           </div>
           <div class="apply-actions">
@@ -295,7 +295,7 @@
     elements.lastCheckedMetric.textContent = `${formatShortTime(meta.last_success)} 核验`;
     elements.resultDescription.textContent =
       `今日共 ${all.length} 个达标岗位，优先城市 ${all.filter((job) => job.city_priority === 1).length} 个。` +
-      "薪资按岗位最低月薪判断，投递前请再次确认招聘状态。";
+      "薪资按岗位最低月薪判断；“近期”表示最近 30 天有更新，投递前请再次确认招聘状态。";
     elements.footerStatus.textContent = `最近核验：${formatShortTime(meta.last_success)}`;
     elements.heroUpdateText.textContent = state.isServer
       ? "实时检索服务已连接"
@@ -324,6 +324,7 @@
 
   function openApplyDialog(job) {
     const platformLinks = platformSearches(job);
+    const primaryPlatform = platformLinks[0];
     elements.applyDialogContent.innerHTML = `
       <div class="dialog-job-header">
         <div class="company-logo">${escapeHtml((job.company || "职").trim().charAt(0))}</div>
@@ -335,15 +336,17 @@
       </div>
       <div class="dialog-notice">
         <strong>先确认，再投递。</strong>
-        该岗位当前出现在公开检索页，${escapeHtml(job.freshness_label)}。职位页若不再提供申请入口，说明招聘方可能已关闭岗位。
+        聚合站详情页可能已失效。请到招聘平台搜索“${escapeHtml(job.company)} ${escapeHtml(job.title)}”，找到同一岗位并确认仍开放后再投递。
       </div>
       <ol class="apply-steps">
-        ${(job.apply_steps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+        <li>在 BOSS直聘等平台搜索公司名称和岗位名称</li>
+        <li>找到同一岗位，确认仍显示“申请 / 沟通”入口</li>
+        <li>登录平台并上传或发送中泰文简历</li>
       </ol>
       <div class="platform-fallback">
-        <span>聚合详情不可用时，在目标平台搜索：</span>
+        <span>其他招聘平台搜索：</span>
         <div class="platform-link-grid">
-          ${platformLinks
+          ${platformLinks.slice(1)
             .map(
               (item) =>
                 `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)} ↗</a>`,
@@ -352,17 +355,21 @@
         </div>
       </div>
       <div class="dialog-actions">
-        <button class="primary-button" type="button" id="dialogSave">${state.saved.has(job.id) ? "已收藏" : "收藏岗位"}</button>
-        <a class="secondary-button" href="${escapeHtml(job.source_url)}" target="_blank" rel="noopener noreferrer">
-          打开职位页 ${arrowIcon()}
+        <a class="primary-button" href="${escapeHtml(primaryPlatform.url)}" target="_blank" rel="noopener noreferrer">
+          去 BOSS 搜索岗位 ${arrowIcon()}
         </a>
+        <button class="secondary-button" type="button" id="dialogCopy">复制岗位信息</button>
       </div>
     `;
     elements.applyDialog.showModal();
-    document.querySelector("#dialogSave").addEventListener("click", () => {
-      toggleSaved(job.id);
-      document.querySelector("#dialogSave").textContent = state.saved.has(job.id) ? "已收藏" : "收藏岗位";
-      render();
+    document.querySelector("#dialogCopy").addEventListener("click", async () => {
+      const value = `${job.company} ${job.title}\n${job.city} · ${job.salary_text}`;
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast("公司名称和岗位信息已复制");
+      } catch {
+        showToast(`请搜索：${value}`);
+      }
     });
   }
 
