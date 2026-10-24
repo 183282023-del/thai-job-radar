@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="每日自动检索月薪 8,000 元以上的泰语岗位，优先展示西安、昆明机会，并标注投递方式。"
+    />
+    <meta name="theme-color" content="#173b31" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>泰语工作雷达 · Thai Job Radar</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="泰语工作雷达首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M10 11.5C10 7.9 12.9 5 16.5 5h7C27.1 5 30 7.9 30 11.5S27.1 18 23.5 18h-9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30 28.5c0 3.6-2.9 6.5-6.5 6.5h-7C12.9 35 10 32.1 10 28.5S12.9 22 16.5 22h9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="20" r="3.25" fill="#dff36a"/>
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>泰语工作雷达</strong>
+            <small>THAI JOB RADAR</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="主导航">
+          <a href="#jobs" class="nav-link active">岗位雷达</a>
+          <a href="#schedule" class="nav-link">自动检索</a>
+          <a href="#guide" class="nav-link">投递指南</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-button" id="notificationButton" type="button" aria-label="开启检索提醒" title="开启检索提醒">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 21h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span class="notification-dot"></span>
+          </button>
+          <button class="avatar-button" id="settingsButton" type="button" aria-label="打开设置">刘</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="live-dot"></span>
+              <span>每日 08:00 自动更新</span>
+              <span class="eyebrow-rule"></span>
+              <span id="heroUpdateText">今日结果已就绪</span>
+            </div>
+            <h1 id="heroTitle">
+              把泰语变成
+              <span class="headline-accent">下一份工作。</span>
+            </h1>
+            <p class="hero-lede">
+              自动筛掉低薪与疑似过期岗位。西安、昆明机会置顶，每一份岗位都明确告诉你
+              <strong>怎样投递简历</strong>。
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="refreshButton" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 11a8 8 0 1 0-2.34 5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 4v7h-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="button-label">立即检索</span>
+              </button>
+              <a class="secondary-button" href="#jobs">
+                查看匹配岗位
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+            <div class="rule-row" aria-label="检索规则">
+              <span><b>¥8,000+</b> 月薪下限</span>
+              <span><b>泰语</b> 专业或任职要求</span>
+              <span><b>可投递</b> 标注申请路径</span>
+            </div>
+          </div>
+
+          <aside class="schedule-card" id="schedule" aria-label="自动检索时间">
+            <div class="schedule-topline">
+              <span>下一次自动检索</span>
+              <span class="schedule-live"><i></i> 已开启</span>
+            </div>
+            <div class="countdown" id="countdown" aria-live="polite">--:--:--</div>
+            <div class="schedule-date">
+              <span class="calendar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M8 3v4M16 3v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span id="nextRunDate">每天 08:00 · Asia/Shanghai</span>
+            </div>
+            <div class="orbit-visual" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="orbit orbit-three"></div>
+              <div class="orbit-core">
+                <span class="core-thai">ไทย</span>
+                <span class="core-label">JOB</span>
+              </div>
+              <span class="orbit-dot dot-one"></span>
+              <span class="orbit-dot dot-two"></span>
+            </div>
+            <div class="schedule-footer">
+              <div>
+                <small>覆盖城市</small>
+                <strong>全国 + 优先城市</strong>
+              </div>
+              <div>
+                <small>检索层</small>
+                <strong>多平台职位聚合</strong>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="metrics" aria-label="检索概览">
+          <article class="metric-card">
+            <span class="metric-icon lime">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 11 12 14 22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <strong id="matchedMetric">0</strong>
+              <span>符合全部条件</span>
+            </div>
+            <small>月薪下限 ≥ 8K</small>
+          </article>
+          <article class="metric-card">
+            <span class="metric-icon peach">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <div>
+              <strong id="priorityMetric">0</strong>
+              <span>西安 / 昆明优先</span>
+            </div>
+            <small>自动置顶展示</small>
+          </article>
+          <article class="metric-card">
+            <span class="metric-icon sky">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <strong id="recentMetric">0</strong>
+              <span>近期仍可投递</span>
+            </div>
+            <small>30 天内更新的结果</small>
+          </article>
+          <article class="metric-card">
+            <span class="metric-icon violet">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 19V9a2 2 0 0 1 2-2h3v12H4ZM11 19V5a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v14h-5ZM18 19v-7a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <strong id="sourceMetric">0</strong>
+              <span>本次检查岗位</span>
+            </div>
+            <small id="lastCheckedMetric">数据核验时间</small>
+          </article>
+        </section>
+
+        <section class="jobs-section" id="jobs" aria-labelledby="jobsTitle">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">MATCHED FOR YOU</div>
+              <h2 id="jobsTitle">匹配岗位</h2>
+              <p id="resultDescription">正在整理今天的泰语机会…</p>
+            </div>
+            <div class="section-actions">
+              <button class="ghost-button" id="exportButton" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                导出清单
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="岗位筛选">
+            <div class="filter-search">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <input id="searchInput" type="search" placeholder="搜索职位或公司" autocomplete="off" />
+            </div>
+            <div class="filter-chips" id="cityFilters" role="group" aria-label="按城市筛选">
+              <button class="filter-chip active" type="button" data-city="all">全部</button>
+              <button class="filter-chip" type="button" data-city="priority">
+                <span class="chip-star">★</span> 优先城市
+              </button>
+              <button class="filter-chip" type="button" data-city="西安">西安</button>
+              <button class="filter-chip" type="button" data-city="昆明">昆明</button>
+              <button class="filter-chip" type="button" data-city="其他">其他城市</button>
+            </div>
+            <div class="filter-tail">
+              <label class="switch-label" title="仅显示近 30 天内更新，或页面未给日期但当前可见的岗位">
+                <input type="checkbox" id="openOnly" checked />
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span>只看可投递</span>
+              </label>
+              <span class="toolbar-divider"></span>
+              <div class="view-switch" role="group" aria-label="切换布局">
+                <button class="view-button active" type="button" data-view="cards" aria-label="卡片视图">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="4" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                    <rect x="14" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                    <rect x="4" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                    <rect x="14" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </button>
+                <button class="view-button" type="button" data-view="list" aria-label="列表视图">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="job-area">
+            <div class="job-results">
+              <div class="result-meta">
+                <span id="visibleCount">0 个结果</span>
+                <label class="sort-control">
+                  <span>排序</span>
+                  <select id="sortSelect" aria-label="排序方式">
+                    <option value="priority">优先城市优先</option>
+                    <option value="fresh">最近更新优先</option>
+                    <option value="salary">平均月薪从高到低</option>
+                  </select>
+                </label>
+              </div>
+              <div class="job-list" id="jobList" aria-live="polite"></div>
+              <div class="empty-state" id="emptyState" hidden>
+                <span class="empty-orbit" aria-hidden="true">★</span>
+                <h3>没有找到符合当前筛选的岗位</h3>
+                <p>试试关闭“只看可投递”，或清除搜索关键词。西安近期暂时没有达到 8K 的泰语岗位。</p>
+                <button class="secondary-button compact" id="resetFiltersButton" type="button">重置筛选</button>
+              </div>
+            </div>
+
+            <aside class="side-column" id="guide">
+              <section class="side-card guide-card">
+                <div class="side-card-heading">
+                  <span class="side-index">01</span>
+                  <h3>投递前 3 件事</h3>
+                </div>
+                <ol class="guide-list">
+                  <li>
+                    <span>确认招聘状态</span>
+                    <small>进入职位页，查看是否仍显示“申请 / 沟通”。</small>
+                  </li>
+                  <li>
+                    <span>准备中泰文简历</span>
+                    <small>项目经历中突出翻译量、行业词汇和证书。</small>
+                  </li>
+                  <li>
+                    <span>记录投递进度</span>
+                    <small>职位收藏后，导出 CSV 作为每日跟进清单。</small>
+                  </li>
+                </ol>
+              </section>
+
+              <section class="side-card coverage-card">
+                <div class="side-card-heading">
+                  <span class="side-index">02</span>
+                  <h3>检索覆盖</h3>
+                </div>
+                <div class="coverage-map" aria-hidden="true">
+                  <span class="map-ring ring-a"></span>
+                  <span class="map-ring ring-b"></span>
+                  <span class="map-line"></span>
+                  <span class="map-city city-xian">西安</span>
+                  <span class="map-city city-kunming">昆明</span>
+                  <span class="map-city city-other">全国</span>
+                </div>
+                <div class="coverage-copy">
+                  <p>以“泰语翻译”为核心词，检查全国、西安和昆明三个公开检索入口。</p>
+                  <div class="platform-pills">
+                    <span>BOSS</span>
+                    <span>猎聘</span>
+                    <span>51job</span>
+                    <span>智联</span>
+                  </div>
+                  <small>平台名称表示聚合目标；具体来源以职位详情页为准。</small>
+                </div>
+              </section>
+
+              <section class="side-card note-card">
+                <span class="note-mark">i</span>
+                <div>
+                  <h3>关于“未截止”</h3>
+                  <p>只有平台明确给出截止时间时才会显示具体日期。其他岗位标注“待平台确认”，避免把仍在索引中误报为确定开放。</p>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <span class="brand-mark small" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M10 11.5C10 7.9 12.9 5 16.5 5h7C27.1 5 30 7.9 30 11.5S27.1 18 23.5 18h-9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30 28.5c0 3.6-2.9 6.5-6.5 6.5h-7C12.9 35 10 32.1 10 28.5S12.9 22 16.5 22h9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="20" r="3.25" fill="#dff36a"/>
+            </svg>
+          </span>
+          <span>为泰语专业求职者整理的每日机会清单</span>
+        </div>
+        <div class="footer-meta">
+          <span id="footerStatus">最近核验：今日</span>
+          <span>·</span>
+          <span>仅供求职信息检索，不代替招聘平台确认</span>
+        </div>
+      </footer>
+    </div>
+
+    <dialog class="apply-dialog" id="applyDialog">
+      <button class="dialog-close" id="applyDialogClose" type="button" aria-label="关闭">×</button>
+      <div id="applyDialogContent"></div>
+    </dialog>
+
+    <dialog class="settings-dialog" id="settingsDialog">
+      <button class="dialog-close" id="settingsDialogClose" type="button" aria-label="关闭">×</button>
+      <div class="settings-heading">
+        <div class="section-kicker">AUTOMATION</div>
+        <h2>检索设置</h2>
+        <p>自动任务会在本地服务运行时执行，并将最近一次成功结果保存在本机。</p>
+      </div>
+      <div class="setting-row">
+        <div>
+          <strong>每日自动检索</strong>
+          <span>每天上午 08:00 · Asia/Shanghai</span>
+        </div>
+        <span class="status-tag active">已开启</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <strong>月薪下限</strong>
+          <span>按岗位标注的最低月薪过滤，避免低薪区间混入</span>
+        </div>
+        <span class="status-tag neutral">¥8,000</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <strong>优先城市</strong>
+          <span>西安、昆明置于所有其他城市之前</span>
+        </div>
+        <span class="status-tag warm">2 座</span>
+      </div>
+      <div class="server-note" id="serverNote">
+        <strong>开启每日检索</strong>
+        <p>在网页所在目录运行：</p>
+        <code>python3 server.py</code>
+        <p>服务需保持运行；浏览器关闭时，纯网页无法自行执行定时任务。</p>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="seed.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
