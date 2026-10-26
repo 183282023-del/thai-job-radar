@@ -302,10 +302,10 @@
     }
   ],
   "meta": {
-    "last_attempt": "2026-10-25T08:14:22.662214+08:00",
+    "last_attempt": "2026-10-26T08:20:22.861641+08:00",
     "last_success": "2026-10-25T08:14:22.662214+08:00",
-    "status": "ok",
-    "message": "已检索 21 个泰语岗位，筛出 10 个月薪不低于 8,000 元的岗位",
+    "status": "degraded",
+    "message": "本次抓取未获得新结果，已继续展示上次有效数据",
     "total_seen": 21,
     "matched": 10,
     "priority_count": 2,
@@ -315,23 +315,23 @@
       {
         "id": "kunming",
         "label": "昆明",
-        "ok": true,
-        "found": 5,
-        "error": null
+        "ok": false,
+        "found": 0,
+        "error": "招聘站触发人工验证"
       },
       {
         "id": "national",
         "label": "全国",
-        "ok": true,
-        "found": 14,
-        "error": null
+        "ok": false,
+        "found": 0,
+        "error": "招聘站触发人工验证"
       },
       {
         "id": "xian",
         "label": "西安",
-        "ok": true,
-        "found": 2,
-        "error": null
+        "ok": false,
+        "found": 0,
+        "error": "招聘站触发人工验证"
       }
     ]
   }
