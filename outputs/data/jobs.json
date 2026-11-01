@@ -302,7 +302,7 @@
     }
   ],
   "meta": {
-    "last_attempt": "2026-10-31T08:33:51.414452+08:00",
+    "last_attempt": "2026-11-01T08:32:49.308069+08:00",
     "last_success": "2026-10-25T08:14:22.662214+08:00",
     "status": "degraded",
     "message": "本次抓取未获得新结果，已继续展示上次有效数据",
@@ -317,7 +317,7 @@
         "label": "昆明",
         "ok": false,
         "found": 0,
-        "error": "<urlopen error timed out>"
+        "error": "招聘站触发人工验证"
       },
       {
         "id": "national",
@@ -331,7 +331,7 @@
         "label": "西安",
         "ok": false,
         "found": 0,
-        "error": "<urlopen error timed out>"
+        "error": "招聘站触发人工验证"
       }
     ]
   }
