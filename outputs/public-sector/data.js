@@ -1,5 +1,5 @@
 window.PUBLIC_SECTOR_DATA = {
-  "checkedAt": "2026-11-26T14:25:52.686894+08:00",
+  "checkedAt": "2026-11-27T14:15:55.759936+08:00",
   "registration": {
     "title": "2027年度国家公务员考试",
     "opensAt": "2026-10-15T08:00:00+08:00",
