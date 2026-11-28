@@ -1,5 +1,5 @@
 window.PUBLIC_SECTOR_DATA = {
-  "checkedAt": "2026-11-27T14:15:55.759936+08:00",
+  "checkedAt": "2026-11-28T13:55:17.012006+08:00",
   "registration": {
     "title": "2027年度国家公务员考试",
     "opensAt": "2026-10-15T08:00:00+08:00",
@@ -347,6 +347,19 @@ window.PUBLIC_SECTOR_DATA = {
     "provincePages": 31,
     "cityPages": 442,
     "professionalMatches": 7,
-    "errors": []
+    "errors": [
+      "密云区: IncompleteRead(12754 bytes read, 287 more expected)",
+      "邯郸市: IncompleteRead(12737 bytes read, 70915 more expected)",
+      "邢台市: IncompleteRead(12745 bytes read, 70240 more expected)",
+      "黔东南苗族侗族自治州: IncompleteRead(12746 bytes read, 15134 more expected)",
+      "桂林市: IncompleteRead(12737 bytes read, 64716 more expected)",
+      "宿州市: IncompleteRead(12730 bytes read, 34174 more expected)",
+      "安顺市: IncompleteRead(12738 bytes read, 10764 more expected)",
+      "茂名市: IncompleteRead(12738 bytes read, 30450 more expected)",
+      "珠海市: IncompleteRead(12737 bytes read, 84575 more expected)",
+      "郑州市: IncompleteRead(12736 bytes read, 169079 more expected)",
+      "哈尔滨市: IncompleteRead(12744 bytes read, 169220 more expected)",
+      "四平市: IncompleteRead(12738 bytes read, 21501 more expected)"
+    ]
   }
 };
